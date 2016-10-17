@@ -1,4 +1,3 @@
-
 val circeVersion = "0.5.3"
 val scalajsReactVersion = "0.11.2"
 val reactVersion = "15.3.2"
@@ -7,6 +6,7 @@ val app = crossProject.settings(
   name := "deployments",
   organization := "com.ovoenergy",
   scalaVersion := "2.11.8",
+  scalacOptions += "-deprecation",
   unmanagedSourceDirectories in Compile +=
     baseDirectory.value  / "shared" / "src" / "main" / "scala",
   libraryDependencies ++= Seq(
@@ -16,7 +16,8 @@ val app = crossProject.settings(
   )
 ).jsSettings(
   libraryDependencies ++= Seq(
-    "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion
+    "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion,
+    "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion
   ),
   jsDependencies ++= Seq(
 		"org.webjars.bower" % "react" % reactVersion

@@ -9,6 +9,15 @@ import scala.io.StdIn
  
 object Server {
 
+  /*
+  TODO:
+  - GitHub/Google auth (whichever is easiest to implement)
+  - Flyway
+  - api-key endpoints
+  - deployment POST endpoint
+  - docs
+   */
+
   def main(args: Array[String]) {
  
     implicit val system = ActorSystem("my-system")
@@ -42,7 +51,11 @@ object Server {
         } ~
         path ("deployments") {
           complete(HttpEntity(ContentTypes.`application/json`,
-            Deployment("2016-10-14T12:00:00Z", "my app", "123", "Success").asJson.spaces2
+            List(
+              Deployment("2016-10-14T12:00:00Z", "my app", "123", "Success"),
+              Deployment("2016-10-13T12:34:56Z", "another app", "123", "Failure"),
+              Deployment("2016-10-14T10:00:00Z", "my app", "456", "Success")
+            ).asJson.spaces2
           ))
         } ~
         getFromResourceDirectory("")
