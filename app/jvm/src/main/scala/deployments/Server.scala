@@ -52,9 +52,9 @@ object Server {
         path ("deployments") {
           complete(HttpEntity(ContentTypes.`application/json`,
             List(
-              Deployment("2016-10-14T12:00:00Z", "my app", "123", "Success"),
-              Deployment("2016-10-13T12:34:56Z", "another app", "123", "Failure"),
-              Deployment("2016-10-14T10:00:00Z", "my app", "456", "Success")
+              Deployment("2016-10-14T12:00:00Z", "my app", "PROD", "123", "Success"),
+              Deployment("2016-10-13T12:34:56Z", "another app", "PROD", "123", "Failure"),
+              Deployment("2016-10-14T10:00:00Z", "my app", "UAT", "456", "Success")
             ).asJson.spaces2
           ))
         } ~
